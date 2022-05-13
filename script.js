@@ -30,10 +30,22 @@ function generatePassword() {
     if(numbers === true) followQuestion.push(arrayNumeric);
     if(specialCharacters === true) followQuestion.push(arraySpecialCharacters);
     
-
 //  loop through the arrays 
+    for(var i = 0; i < numOfChar; i++) {
+        // create a var that stores the random inpiut
+      var storeButton = Math.floor(Math.random() *followQuestion.length);
+      var selectedArray = followQuestion[storeButton];
+      results += selectedArray[Math.floor(Math.random() *selectedArray.length)];
+    ;
+    }
+  } else { window.alert(' you must select an entry between 8 and 128');
+      return generatePassword();
+      
+  }
+    return results;
+}
 
-
+// challenge make it so that if they hit cancel to many times instead of error have it prompt them to do it again
 
 // Write password to the #password input
 function writePassword() {
