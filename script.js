@@ -1,52 +1,48 @@
-// Acceptance Criteria
-// GIVEN I need a new, secure password
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-// WHEN asked for character types to include in the password
-// THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
-
-// Assignment code here
 
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+// this method returns an array from any iterable object. and also returns  an arrray from any object with a lenght propertie
+// the arrow function works as a shorter funcion 
+const myArrayUpper = Array.from(Array(26)).map((e,i) => i + 65);
+const alphabetUpper = myArrayUpper.map((x) => String.fromCharCode(x));
+
+const myArrayLower = Array.from(Array(26)).map((e,i) => i + 97);
+const alphabetLower = myArrayLower.map((x) => String.fromCharCode(x));
+
+const arrayNumeric = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+const arraySpecialCharacters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')'];
+
+function generatePassword() {
+  var results = "";
+    var numberOfCharacters = window.prompt ("This is a password generators, How many characters would you like your password to contain");
+    var numOfChar = parseInt(numberOfCharacters);
+    if(numOfChar >= 8 && numOfChar <= 128) {
+      var lowerCase = window.confirm("click OK to confirm lowercase letter."); 
+      var upperCase = window.confirm("Click OK to confirm uppercase letter.");
+      var numbers = window.confirm("Click OK to confirm numeric values");
+      var specialCharacters = window.confirm("Click OK to confirm special characters");
+    // if statemts promt the user with following questions and loop
+    var followQuestion = []; 
+    if(upperCase === true) followQuestion.push(alphabetUpper);
+    if(lowerCase === true) followQuestion.push(alphabetLower);
+    if(numbers === true) followQuestion.push(arrayNumeric);
+    if(specialCharacters === true) followQuestion.push(arraySpecialCharacters);
+    
+
+//  loop through the arrays 
+
+
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+var password = generatePassword();
+var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+passwordText.value = password;
 
 }
 
-
-function RandomLowerCase (){
-    return String.fromCharCode(Math.floor(Math.random()* 26) + 97)
-};
-
-function RandomUpperCase (){
-    return String.fromCharCode(Math.floor(Math.random()* 26) + 65)
-};
-
-function RandomNumber (){
-    return String.fromCharCode(Math.floor(Math.random()* 26) + 48)
-};
-
-function RandomCharacter (){
-    var SpecialCharacters = '!@#$%^&*()_+-';
-    return SpecialCharacters[Math.floor(Math.random()* SpecialCharacters.length)]
-};
-
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword ;
+generateBtn.addEventListener("click", writePassword); 
